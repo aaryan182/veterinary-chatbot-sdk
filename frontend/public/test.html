@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinary Chatbot Widget - Test Page</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1a1a2e;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+
+        .code-block pre {
+            color: #e0e0e0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .code-block .comment {
+            color: #6a9955;
+        }
+
+        .code-block .string {
+            color: #ce9178;
+        }
+
+        .code-block .keyword {
+            color: #569cd6;
+        }
+
+        .code-block .tag {
+            color: #4ec9b0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .demo-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #1a1a2e;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .btn-danger:hover {
+            background: #fecaca;
+        }
+
+        .status {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🐾 Veterinary Chatbot Widget</h1>
+            <p>Test and integration examples for the chatbot widget</p>
+        </header>
+
+        <!-- Demo Section -->
+        <div class="demo-section">
+            <h2>Live Demo</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                Click "Initialize Widget" to load the chatbot. Look for the floating button in the bottom-right corner.
+            </p>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="initializeWidget()">
+                    Initialize Widget
+                </button>
+                <button class="btn btn-secondary" onclick="reinitializeWidget()">
+                    Reinitialize
+                </button>
+                <button class="btn btn-danger" onclick="destroyWidget()">
+                    Destroy Widget
+                </button>
+                <button class="btn btn-secondary" onclick="checkStatus()">
+                    Check Status
+                </button>
+            </div>
+
+            <div id="status" class="status status-info" style="display: none;"></div>
+        </div>
+
+        <!-- Integration Examples -->
+        <div class="cards">
+            <!-- Basic Integration -->
+            <div class="card">
+                <span class="badge badge-success">Recommended</span>
+                <h2 style="margin-top: 12px;">Basic Integration</h2>
+                <p>Simplest way to add the chatbot to your website with automatic initialization.</p>
+                <div class="code-block">
+                    <pre><span class="comment">&lt;!-- Add before closing &lt;/body&gt; tag --&gt;</span>
+<span class="tag">&lt;script</span> 
+  <span class="keyword">src</span>=<span class="string">"https://your-cdn.com/chatbot.js"</span>
+  <span class="keyword">data-auto-init</span>=<span class="string">"true"</span>
+  <span class="keyword">data-api-base-url</span>=<span class="string">"https://api.yoursite.com/api/v1"</span>
+<span class="tag">&gt;&lt;/script&gt;</span></pre>
+                </div>
+            </div>
+
+            <!-- With Configuration -->
+            <div class="card">
+                <span class="badge badge-info">Customized</span>
+                <h2 style="margin-top: 12px;">With Configuration</h2>
+                <p>Add custom configuration before loading the widget script.</p>
+                <div class="code-block">
+                    <pre><span class="tag">&lt;script&gt;</span>
+  <span class="keyword">window</span>.VetChatbotConfig = {
+    apiBaseUrl: <span class="string">'https://api.yoursite.com/api/v1'</span>,
+    position: <span class="string">'bottom-right'</span>,
+    title: <span class="string">'Pet Health Assistant'</span>,
+    autoInit: <span class="keyword">true</span>,
+    context: {
+      userName: <span class="string">'John Doe'</span>,
+      petName: <span class="string">'Buddy'</span>,
+      source: <span class="string">'website'</span>
+    }
+  };
+<span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="keyword">src</span>=<span class="string">"chatbot.js"</span><span class="tag">&gt;&lt;/script&gt;</span></pre>
+                </div>
+            </div>
+
+            <!-- Manual Initialization -->
+            <div class="card">
+                <span class="badge badge-warning">Advanced</span>
+                <h2 style="margin-top: 12px;">Manual Initialization</h2>
+                <p>Full control over when and how the widget is initialized.</p>
+                <div class="code-block">
+                    <pre><span class="tag">&lt;script</span> <span class="keyword">src</span>=<span class="string">"chatbot.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script&gt;</span>
+  <span class="comment">// Initialize when ready</span>
+  <span class="keyword">const</span> widget = VetChatbot.init({
+    apiBaseUrl: <span class="string">'https://api.yoursite.com/api/v1'</span>,
+    position: <span class="string">'bottom-left'</span>,
+    title: <span class="string">'Vet Assistant'</span>
+  });
+
+  <span class="comment">// Control methods</span>
+  <span class="comment">// widget.destroy();</span>
+  <span class="comment">// widget.reinit(newConfig);</span>
+<span class="tag">&lt;/script&gt;</span></pre>
+                </div>
+            </div>
+
+            <!-- Data Attributes -->
+            <div class="card">
+                <span class="badge badge-info">No JavaScript</span>
+                <h2 style="margin-top: 12px;">Data Attributes</h2>
+                <p>Configure entirely through HTML data attributes.</p>
+                <div class="code-block">
+                    <pre><span class="tag">&lt;script</span>
+  <span class="keyword">src</span>=<span class="string">"chatbot.js"</span>
+  <span class="keyword">data-auto-init</span>=<span class="string">"true"</span>
+  <span class="keyword">data-api-base-url</span>=<span class="string">"https://api.yoursite.com/api/v1"</span>
+  <span class="keyword">data-position</span>=<span class="string">"bottom-right"</span>
+  <span class="keyword">data-title</span>=<span class="string">"Chat with us"</span>
+  <span class="keyword">data-user-name</span>=<span class="string">"Guest"</span>
+  <span class="keyword">data-pet-name</span>=<span class="string">"My Pet"</span>
+<span class="tag">&gt;&lt;/script&gt;</span></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Reference -->
+        <div class="demo-section">
+            <h2>JavaScript API Reference</h2>
+            <div class="code-block">
+                <pre><span class="comment">// Initialize with options</span>
+<span class="keyword">const</span> widget = VetChatbot.init({
+  apiBaseUrl: <span class="string">'string'</span>,      <span class="comment">// Required: Backend API URL</span>
+  position: <span class="string">'bottom-right'</span>,  <span class="comment">// 'bottom-right' | 'bottom-left'</span>
+  title: <span class="string">'Vet Assistant'</span>,    <span class="comment">// Widget header title</span>
+  containerId: <span class="string">'vet-chatbot-root'</span>, <span class="comment">// Custom container ID</span>
+  enabled: <span class="keyword">true</span>,             <span class="comment">// Enable/disable widget</span>
+  context: {                  <span class="comment">// User context</span>
+    userId: <span class="string">'string'</span>,
+    userName: <span class="string">'string'</span>,
+    petName: <span class="string">'string'</span>,
+    source: <span class="string">'string'</span>
+  }
+});
+
+<span class="comment">// Instance methods</span>
+widget.destroy();           <span class="comment">// Remove widget from DOM</span>
+widget.isInitialized();     <span class="comment">// Check if widget is active</span>
+widget.getConfig();         <span class="comment">// Get current configuration</span>
+widget.reinit(newConfig);   <span class="comment">// Reinitialize with new config</span>
+
+<span class="comment">// Static methods</span>
+VetChatbot.init(config);    <span class="comment">// Initialize widget</span>
+VetChatbot.destroy();       <span class="comment">// Destroy current instance</span>
+VetChatbot.isReady();       <span class="comment">// Check if ready</span>
+VetChatbot.version;         <span class="comment">// Get version string</span></pre>
+            </div>
+        </div>
+
+        <footer>
+            <p>Veterinary Chatbot Widget v1.0.0 | <a href="#">Documentation</a> | <a href="#">GitHub</a></p>
+        </footer>
+    </div>
+
+    <!-- Chatbot Widget Script -->
+    <!-- For local testing, use relative path. For production, use CDN URL -->
+    <script src="../dist/widget/chatbot.js"></script>
+
+    <script>
+        // Demo page JavaScript
+        const statusEl = document.getElementById('status');
+
+        function showStatus(message, type = 'info') {
+            statusEl.textContent = message;
+            statusEl.className = `status status-${type}`;
+            statusEl.style.display = 'block';
+        }
+
+        function initializeWidget() {
+            try {
+                if (typeof VetChatbot === 'undefined') {
+                    showStatus('❌ Widget script not loaded. Run "npm run build:widget" first.', 'info');
+                    return;
+                }
+
+                const widget = VetChatbot.init({
+                    apiBaseUrl: 'http://localhost:5000/api/v1',
+                    position: 'bottom-right',
+                    title: 'Vet Assistant',
+                    context: {
+                        userName: 'Test User',
+                        petName: 'Buddy',
+                        source: 'test-page'
+                    }
+                });
+
+                showStatus('✅ Widget initialized successfully! Look for the chat button in the bottom-right corner.', 'success');
+            } catch (error) {
+                showStatus('❌ Error initializing widget: ' + error.message, 'info');
+            }
+        }
+
+        function reinitializeWidget() {
+            try {
+                if (typeof VetChatbot === 'undefined') {
+                    showStatus('❌ Widget script not loaded.', 'info');
+                    return;
+                }
+
+                VetChatbot.destroy();
+
+                VetChatbot.init({
+                    apiBaseUrl: 'http://localhost:5000/api/v1',
+                    position: 'bottom-left',
+                    title: 'Pet Health Chat',
+                    context: {
+                        userName: 'New User',
+                        petName: 'Max'
+                    }
+                });
+
+                showStatus('✅ Widget reinitialized with new configuration (bottom-left position).', 'success');
+            } catch (error) {
+                showStatus('❌ Error reinitializing widget: ' + error.message, 'info');
+            }
+        }
+
+        function destroyWidget() {
+            try {
+                if (typeof VetChatbot === 'undefined') {
+                    showStatus('❌ Widget script not loaded.', 'info');
+                    return;
+                }
+
+                VetChatbot.destroy();
+                showStatus('✅ Widget destroyed successfully.', 'success');
+            } catch (error) {
+                showStatus('❌ Error destroying widget: ' + error.message, 'info');
+            }
+        }
+
+        function checkStatus() {
+            if (typeof VetChatbot === 'undefined') {
+                showStatus('ℹ️ Widget script not loaded. Run "npm run build:widget" first, then refresh this page.', 'info');
+                return;
+            }
+
+            const isReady = VetChatbot.isReady();
+            const version = VetChatbot.version;
+
+            if (isReady) {
+                const config = VetChatbot.getInstance().getConfig();
+                showStatus(`✅ Widget v${version} is active | API: ${config.apiBaseUrl} | Position: ${config.position}`, 'success');
+            } else {
+                showStatus(`ℹ️ Widget v${version} is loaded but not initialized. Click "Initialize Widget" to start.`, 'info');
+            }
+        }
+
+        // Check status on page load
+        window.addEventListener('load', () => {
+            setTimeout(checkStatus, 500);
+        });
+    </script>
+</body>
+
+</html>
