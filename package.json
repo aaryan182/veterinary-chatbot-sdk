@@ -1,0 +1,44 @@
+{
+  "name": "veterinary-chatbot-sdk",
+  "version": "1.0.0",
+  "description": "A professional veterinary chatbot SDK with React widget and Node.js backend",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "build": "npm run build --workspaces",
+    "build:backend": "npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/veterinary-chatbot-sdk.git"
+  },
+  "keywords": [
+    "veterinary",
+    "chatbot",
+    "sdk",
+    "ai",
+    "pet-health",
+    "gemini"
+  ],
+  "author": "Your Organization",
+  "license": "MIT"
+}
